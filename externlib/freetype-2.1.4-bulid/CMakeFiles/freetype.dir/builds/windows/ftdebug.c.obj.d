@@ -1,0 +1,59 @@
+CMakeFiles/freetype.dir/builds/windows/ftdebug.c.obj: \
+ E:\meo\FootballA\externlib\freetype-2.14.1\builds\windows\ftdebug.c \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/freetype.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/ft2build.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/config/ftheader.h \
+ E:/meo/FootballA/externlib/freetype-2.1.4-bulid/include/freetype/config/ftconfig.h \
+ E:/meo/FootballA/externlib/freetype-2.1.4-bulid/include/freetype/config/ftoption.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/config/ftstdlib.h \
+ E:/meo/C++/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+ E:/meo/C++/ucrt64/include/stddef.h E:/meo/C++/ucrt64/include/crtdefs.h \
+ E:/meo/C++/ucrt64/include/corecrt.h E:/meo/C++/ucrt64/include/_mingw.h \
+ E:/meo/C++/ucrt64/include/_mingw_mac.h \
+ E:/meo/C++/ucrt64/include/_mingw_secapi.h \
+ E:/meo/C++/ucrt64/include/vadefs.h \
+ E:/meo/C++/ucrt64/include/sdks/_mingw_ddk.h \
+ E:/meo/C++/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h \
+ E:/meo/C++/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h \
+ E:/meo/C++/ucrt64/include/limits.h E:/meo/C++/ucrt64/include/string.h \
+ E:/meo/C++/ucrt64/include/sec_api/string_s.h \
+ E:/meo/C++/ucrt64/include/stdio.h \
+ E:/meo/C++/ucrt64/include/corecrt_stdio_config.h \
+ E:/meo/C++/ucrt64/include/_mingw_off_t.h \
+ E:/meo/C++/ucrt64/include/swprintf.inl \
+ E:/meo/C++/ucrt64/include/sec_api/stdio_s.h \
+ E:/meo/C++/ucrt64/include/stdlib.h \
+ E:/meo/C++/ucrt64/include/corecrt_wstdlib.h \
+ E:/meo/C++/ucrt64/include/sec_api/stdlib_s.h \
+ E:/meo/C++/ucrt64/include/malloc.h \
+ E:/meo/C++/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h \
+ E:/meo/C++/ucrt64/include/errno.h E:/meo/C++/ucrt64/include/setjmp.h \
+ E:/meo/C++/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h \
+ E:/meo/C++/ucrt64/include/stdarg.h \
+ E:/meo/C++/ucrt64/include/_mingw_stdarg.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/config/integer-types.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/config/public-macros.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/config/mac-support.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/fttypes.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftsystem.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftimage.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/fterrors.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftmoderr.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/fterrdef.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftlogging.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/ftdebug.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/compiler-macros.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/ftobjs.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftrender.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftmodapi.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftglyph.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftsizes.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftlcdfil.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftparams.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/ftmemory.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/ftgloadr.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/ftdrv.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/autohint.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/ftserv.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/internal/ftcalc.h \
+ E:/meo/FootballA/externlib/freetype-2.14.1/include/freetype/ftincrem.h
