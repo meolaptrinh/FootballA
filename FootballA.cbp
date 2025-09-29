@@ -24,6 +24,8 @@
 				<Compiler>
 					<Add option="-DSFML_STATIC" />
 					<Add directory="externlib/glfw-3.4.bin.WIN64/include" />
+					<Add directory="externlib/imgui-master" />
+					<Add directory="externlib/imgui-master/backends" />
 				</Compiler>
 				<Linker>
 					<Add library="glfw3" />
@@ -32,11 +34,25 @@
 					<Add library="kernel32" />
 					<Add library="shell32" />
 					<Add library="user32" />
+					<Add library="freetype" />
 					<Add directory="externlib/glfw-3.4.bin.WIN64/lib-mingw-w64" />
+					<Add directory="externlib/imgui-master" />
+					<Add directory="externlib/imgui-master/backends" />
 					<LinkerExe value="CppCompiler" />
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="externlib/imgui-master/backends/imgui_impl_glfw.cpp" />
+		<Unit filename="externlib/imgui-master/backends/imgui_impl_opengl3.cpp" />
+		<Unit filename="externlib/imgui-master/imgui.cpp" />
+		<Unit filename="externlib/imgui-master/imgui_demo.cpp" />
+		<Unit filename="externlib/imgui-master/imgui_draw.cpp" />
+		<Unit filename="externlib/imgui-master/imgui_tables.cpp" />
+		<Unit filename="externlib/imgui-master/imgui_widgets.cpp" />
+		<Unit filename="externlib/implot/implot.cpp" />
+		<Unit filename="externlib/implot/implot_demo.cpp" />
+		<Unit filename="externlib/implot/implot_items.cpp" />
+		<Unit filename="externlib/json.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

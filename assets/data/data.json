@@ -1,0 +1,20 @@
+{
+    "teams":[
+    {
+        "name":"Manchester United",
+        "seasons":[
+            {"year":2014,"point":70},
+            {"year":2015,"point":66},
+            {"year":2016,"point":69}
+        ]
+    },
+    {
+        "name":"Manchester City",
+        "seasons":[
+            {"year":2014,"point":70},
+            {"year":2015,"point":66},
+            {"year":2016,"point":69}
+        ]
+    } 
+    ]
+}
