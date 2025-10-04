@@ -1,0 +1,89 @@
+{
+    "filters": {
+        "competitions": "PL",
+        "limit": 1,
+        "permission": "TIER_ONE",
+        "season": "2025",
+        "status": [
+            "FINISHED"
+        ]
+    },
+    "matches": [
+        {
+            "area": {
+                "code": "ENG",
+                "flag": "https://crests.football-data.org/770.svg",
+                "id": 2072,
+                "name": "England"
+            },
+            "awayTeam": {
+                "crest": "https://crests.football-data.org/57.png",
+                "id": 57,
+                "name": "Arsenal FC",
+                "shortName": "Arsenal",
+                "tla": "ARS"
+            },
+            "competition": {
+                "code": "PL",
+                "emblem": "https://crests.football-data.org/PL.png",
+                "id": 2021,
+                "name": "Premier League",
+                "type": "LEAGUE"
+            },
+            "group": null,
+            "homeTeam": {
+                "crest": "https://crests.football-data.org/67.png",
+                "id": 67,
+                "name": "Newcastle United FC",
+                "shortName": "Newcastle",
+                "tla": "NEW"
+            },
+            "id": 537842,
+            "lastUpdated": "2025-10-04T05:21:03Z",
+            "matchday": 6,
+            "odds": {
+                "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+            },
+            "referees": [
+                {
+                    "id": 23568,
+                    "name": "Jarred Gillett",
+                    "nationality": "Australia",
+                    "type": "REFEREE"
+                }
+            ],
+            "score": {
+                "duration": "REGULAR",
+                "fullTime": {
+                    "away": 2,
+                    "home": 1
+                },
+                "halfTime": {
+                    "away": 0,
+                    "home": 1
+                },
+                "winner": "AWAY_TEAM"
+            },
+            "season": {
+                "currentMatchday": 7,
+                "endDate": "2026-05-24",
+                "id": 2403,
+                "startDate": "2025-08-15",
+                "winner": null
+            },
+            "stage": "REGULAR_SEASON",
+            "status": "FINISHED",
+            "utcDate": "2025-09-28T15:30:00Z"
+        }
+    ],
+    "resultSet": {
+        "competitions": "PL",
+        "count": 1,
+        "draws": 0,
+        "first": "2025-09-28",
+        "last": "2025-09-28",
+        "losses": 0,
+        "played": 1,
+        "wins": 0
+    }
+}

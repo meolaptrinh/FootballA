@@ -2,14 +2,20 @@
 #include <GLFW/glfw3.h>
 #include<iostream>
 #include<string>
+#include<unordered_map>
 #include<vector>
 #include<functional>
 #include<fstream>
+#include <iterator>
+#include <curl/curl.h>
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "externlib/json.hpp"
 #include "externlib/implot/implot.h"
+#include "sever/sever.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "externlib/stb_image.h"
 const int window_width = 800;
 const int window_height = 600;
 std::vector<bool>hide_seek = {false};
@@ -86,8 +92,69 @@ struct Team{
     std::string name;
     std::vector<Season>seasons;
 };
+struct Match{
+    std::string home_team;
+    std::string away_team;
+    int home_team_point;
+    int away_team_point;
+    std::string link_image_home_team;
+    std::string link_image_away_team;
+};
+struct Logo{
+    GLuint image;
+    int w;
+    int h;
+};
+bool DownloadImageToMemory(const std::string& url, std::vector<unsigned char>& outBuffer) {
+    CURL* curl = curl_easy_init();
+    if (!curl) return false;
+
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteVectorCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &outBuffer);
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L); // cho phép redirect
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+
+    CURLcode res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+
+    return (res == CURLE_OK);
+}
+GLuint LoadTextureFromMemory(const std::vector<unsigned char>& buffer, int* out_width, int* out_height) {
+    int channels;
+    unsigned char* data = stbi_load_from_memory(buffer.data(), buffer.size(), out_width, out_height, &channels, 4);
+    if (!data) {
+        std::cerr << "Failed to load image from memory" << std::endl;
+        return 0;
+    }
+
+    GLuint tex;
+    glGenTextures(1, &tex);
+    glBindTexture(GL_TEXTURE_2D, tex);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, *out_width, *out_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    stbi_image_free(data);
+    return tex;
+}
+void lay_data_Match(Match& match,std::string file){
+    std::ifstream file_match(file);
+    nlohmann::json data_match;
+    file_match>>data_match;
+
+    match.away_team = data_match["matches"][0]["awayTeam"]["shortName"];
+    match.link_image_away_team = data_match["matches"][0]["awayTeam"]["crest"];
+    match.home_team = data_match["matches"][0]["homeTeam"]["shortName"];
+    match.link_image_home_team = data_match["matches"][0]["homeTeam"]["crest"];
+    match.away_team_point = data_match["matches"][0]["score"]["fullTime"]["away"];
+    match.home_team_point = data_match["matches"][0]["score"]["fullTime"]["home"];
+}
 int main() {
 
+    SeverStart();
     glfwInit();
     GLFWwindow* window = glfwCreateWindow(window_width, window_height, "FootballA", nullptr, nullptr);
     glfwMakeContextCurrent(window);
@@ -103,11 +170,13 @@ int main() {
     ImGui_ImplGlfw_InitForOpenGL(window,true);
     //khoi tao font
     ImFont* font_id_01 = io.Fonts->AddFontFromFileTTF("assets/fonts/arial.ttf",16.0f);
-
+    ImFont* font_id_02 = io.Fonts->AddFontFromFileTTF("assets/fonts/arial.ttf",20.0f);
+    ImFont* font_id_03 = io.Fonts->AddFontFromFileTTF("assets/fonts/arial.ttf",120.0f);
     openGL_draw drawer;
     const char* team_list[] = {"Manchester United","Manchester City","Arsenal"};
     int team_current = 0;
     //du lieu vao
+
     std::ifstream file("assets/data/data.json");
     if(!file.is_open()){
         std::cerr<<"Load Data Error";
@@ -127,6 +196,54 @@ int main() {
         }
         teams.push_back(team);
     }
+
+    //lay du lieu tran dau
+    std::vector<Match>lastest_PL_match;
+    std::unordered_map<int,std::string>name_team_map;
+    name_team_map[0] = "MU";
+    name_team_map[1] = "MC";
+    name_team_map[2] = "ARS";
+    for(int i = 0;i<std::size(team_list);i++){
+        Match match_PL;
+        lay_data_Match(match_PL,"assets/data/"+name_team_map[i]+"_Match.json");
+        lastest_PL_match.push_back(match_PL);
+    }
+    //anh xa ten
+    std::unordered_map<int,std::string>short_name_team_map;
+    short_name_team_map[0] = "Man United";
+    short_name_team_map[1] = "Man City";
+    short_name_team_map[2] = "Arsenal";
+
+    //load Logo
+    std::vector<Logo>logo_home_team;
+    std::vector<Logo>logo_away_team;
+
+    for(int i = 0;i<std::size(team_list);i++){
+        std::vector<unsigned char>buffer;
+        Logo logo;
+               if(!DownloadImageToMemory(lastest_PL_match[i].link_image_home_team,buffer)){
+            std::cerr<<"Khong load anh tu URL";
+            return 0;
+        }
+        else if(buffer.empty()){
+                std::cerr<<"Buffer rong";
+                return 0;
+        }
+        else{
+            logo.image = LoadTextureFromMemory(buffer,&logo.w,&logo.h);
+            if(logo.image == 0){
+            std::cerr<<"Load khong thanh cong anh";
+            return 0;
+            }
+        }
+        logo_home_team.push_back(logo);
+        Logo logo_away;
+        std::vector<unsigned char>buffer_away;
+        if(DownloadImageToMemory(lastest_PL_match[i].link_image_away_team,buffer_away)){
+                logo_away.image = LoadTextureFromMemory(buffer_away,&logo_away.w,&logo_away.h);
+        }
+        logo_away_team.push_back(logo_away);
+        }
 
 
     //vong lap chinh
@@ -160,10 +277,10 @@ int main() {
                 }
         ImGui::End();
         ImGui::PopStyleVar(1);
-        ImGui::PopFont();
         ImGui::PopStyleColor(2);
         //ve bieu do
-        ImGui::Begin("Biểu đồ",nullptr,ImGuiWindowFlags_NoTitleBar);
+        ImGui::SetNextWindowSize(ImVec2(1024,300));
+        ImGui::Begin("Biểu đồ",nullptr,ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoResize);
         std::vector<double>point;
         std::vector<double>years;
         for(auto& s:teams[team_current].seasons){
@@ -171,11 +288,43 @@ int main() {
                 years.push_back(s.year);
         }
         if(ImPlot::BeginPlot(u8"Điểm theo mùa",u8"Năm",u8"Điểm")){
-            ImPlot::SetupAxisFormat(ImAxis_X1,"%d");
+            ImPlot::SetupAxisTicks(ImAxis_X1, years.data(), static_cast<int>(years.size()));
             ImPlot::PlotLine(teams[team_current].name.c_str(),years.data(),point.data(),static_cast<int>(point.size()));
             ImPlot::EndPlot();
         }
         ImGui::End();
+        ImGui::PopFont();
+
+        ImGui::PushFont(font_id_02);
+        ImGui::PushStyleColor(ImGuiCol_Text,ImVec4(0, 0, 0,255));
+        ImGui::SetNextWindowPos(ImVec2(53,409));
+        ImGui::Begin("Ketqua",nullptr,ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoBackground|ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize);
+        ImGui::Text(u8"Kết quả trận Premier League gần nhất của %s ", team_list[team_current]);
+        ImGui::End();
+
+
+
+        ImGui::SetNextWindowPos(ImVec2(53,459));
+        ImGui::Begin("Match_home",nullptr,ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoBackground|ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize);
+            ImGui::Image((void*)(intptr_t)logo_home_team[team_current].image,ImVec2(logo_home_team[team_current].w*0.5f,logo_home_team[team_current].h*0.5f));
+        ImGui::End();
+
+        ImGui::SetNextWindowPos(ImVec2(452,459));
+        ImGui::Begin("Match_away",nullptr,ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoBackground|ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize);
+        ImGui::Image((void*)(intptr_t)logo_away_team[team_current].image,ImVec2(logo_away_team[team_current].w*0.5f,logo_away_team[team_current].h*0.5f));
+        ImGui::End();
+
+        ImGui::PopFont();
+
+        ImGui::SetNextWindowPos(ImVec2(186,459));
+        ImGui::PushFont(font_id_03);
+        ImGui::Begin("Tiso",nullptr,ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoBackground|ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize);
+        ImGui::Text("%d%s%d",lastest_PL_match[team_current].home_team_point," - ",lastest_PL_match[team_current].away_team_point);
+        ImGui::End();
+        ImGui::PopStyleColor();
+        ImGui::PopFont();
+
+
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);

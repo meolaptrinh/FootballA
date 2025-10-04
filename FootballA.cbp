@@ -26,8 +26,10 @@
 					<Add directory="externlib/glfw-3.4.bin.WIN64/include" />
 					<Add directory="externlib/imgui-master" />
 					<Add directory="externlib/imgui-master/backends" />
+					<Add directory="externlib/curl-8.16.0_4-win64-mingw/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-lcurl" />
 					<Add library="glfw3" />
 					<Add library="gdi32" />
 					<Add library="opengl32" />
@@ -38,10 +40,12 @@
 					<Add directory="externlib/glfw-3.4.bin.WIN64/lib-mingw-w64" />
 					<Add directory="externlib/imgui-master" />
 					<Add directory="externlib/imgui-master/backends" />
+					<Add directory="externlib/curl-8.16.0_4-win64-mingw/lib" />
 					<LinkerExe value="CppCompiler" />
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="externlib/curl-8.16.0/include/curl/curl.h" />
 		<Unit filename="externlib/imgui-master/backends/imgui_impl_glfw.cpp" />
 		<Unit filename="externlib/imgui-master/backends/imgui_impl_opengl3.cpp" />
 		<Unit filename="externlib/imgui-master/imgui.cpp" />
@@ -53,7 +57,11 @@
 		<Unit filename="externlib/implot/implot_demo.cpp" />
 		<Unit filename="externlib/implot/implot_items.cpp" />
 		<Unit filename="externlib/json.hpp" />
+		<Unit filename="externlib/stb_image.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="sever/out.json" />
+		<Unit filename="sever/sever.cpp" />
+		<Unit filename="sever/sever.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

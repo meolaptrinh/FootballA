@@ -1,16 +1,21 @@
 # depslib dependency file v1.0
-1759115872 source:e:\meo\footballa\main.cpp
+1759549083 source:e:\meo\footballa\main.cpp
 	<GLFW/glfw3.h>
 	<iostream>
 	<string>
+	<unordered_map>
 	<vector>
 	<functional>
 	<fstream>
+	<iterator>
+	<curl/curl.h>
 	"imgui.h"
 	"imgui_impl_glfw.h"
 	"imgui_impl_opengl3.h"
 	"externlib/json.hpp"
 	"externlib/implot/implot.h"
+	"sever/sever.h"
+	"externlib/stb_image.h"
 
 1758141372 e:\meo\footballa\externlib\sfml-3.0.2\include\sfml\graphics.hpp
 	<SFML/Graphics/BlendMode.hpp>
@@ -1441,4 +1446,135 @@
 	<stdint.h>
 	<inttypes.h>
 	<emscripten/version.h>
+
+1759503693 e:\meo\footballa\sever\sever.h
+
+1759544998 source:e:\meo\footballa\sever\sever.cpp
+	<curl/curl.h>
+	<iostream>
+	<fstream>
+	"../externlib/json.hpp"
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<sys/param.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"options.h"
+	"header.h"
+	"websockets.h"
+	"mprintf.h"
+	"typecheck-gcc.h"
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\curlver.h
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\system.h
+	<ConditionalMacros.h>
+	<inttypes.h>
+	<inttypes.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\easy.h
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\multi.h
+	"curl.h"
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\urlapi.h
+	"curl.h"
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\options.h
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\header.h
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\websockets.h
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\mprintf.h
+	<stdarg.h>
+	<stdio.h>
+	"curl.h"
+
+1757483023 e:\meo\footballa\externlib\curl-8.16.0\include\curl\typecheck-gcc.h
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<sys/param.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"options.h"
+	"header.h"
+	"websockets.h"
+	"mprintf.h"
+	"typecheck-gcc.h"
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\curlver.h
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\system.h
+	<ConditionalMacros.h>
+	<inttypes.h>
+	<inttypes.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\easy.h
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\multi.h
+	"curl.h"
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\urlapi.h
+	"curl.h"
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\options.h
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\header.h
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\websockets.h
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\mprintf.h
+	<stdarg.h>
+	<stdio.h>
+	"curl.h"
+
+1757457824 e:\meo\footballa\externlib\curl-8.16.0_4-win64-mingw\include\curl\typecheck-gcc.h
+
+1759497031 e:\meo\footballa\externlib\stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
 
